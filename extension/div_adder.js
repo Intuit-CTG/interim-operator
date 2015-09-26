@@ -1,6 +1,11 @@
 function handleResult(returns) {
-
-	text = "Your estimated tax return: <h2 style=\"color:green\">$" + returns.toFixed(2) + "</h2>";
+	var color;
+	if (returns >= 0) {
+		color = "green";
+	} else {
+		color = "red";
+	}
+	var text = "Your estimated tax return: <h2 style=\"color:" + color + "\">$" + returns.toFixed(2) + "</h2>";
 
     var sections = document.getElementsByClassName('zsg-content-section collapsible');
     if (!($(".tax")[0])){
@@ -14,13 +19,10 @@ var state = $("span.zsg-h2.addr_city").html().split(", ")[1].split(" ")[0];
 var toBuy = $(".hlc-output-fixed30")[0];
 var est_mortgage;
 if (toBuy) {
-	alert("This is a house to buy.");
 	toBuy = 1;
 	est_mortgage = $("span.hlc-output-fixed30").html().split('<')[0];
 	est_mortgage = Number(est_mortgage.split("$")[1].split(",").join(""));
-	alert("est_mortgage: " + est_mortgage);
 } else {
-	alert("This is something to rent.");
 	toBuy = 0;
 	est_mortgage = 0;
 }
