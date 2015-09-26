@@ -11,16 +11,22 @@ function handleResult(returns) {
 var cost = $("div.main-row.home-summary-row").find("span").html().split('<')[0];
 var value = cost.split("$")[1].split(",").join("");
 var state = $("span.zsg-h2.addr_city").html().split(", ")[1].split(" ")[0];
-var toBuy = $(".loan-calculator-label")[0];
+var toBuy = $(".hlc-output-fixed30")[0];
+var est_mortgage;
 if (toBuy) {
-
+	alert("This is a house to buy.");
+	toBuy = 1;
+	est_mortgage = $("span.hlc-output-fixed30").html().split('<')[0];
+	est_mortgage = Number(est_mortgage.split("$")[1].split(",").join(""));
+	alert("est_mortgage: " + est_mortgage);
+} else {
+	alert("This is something to rent.");
+	toBuy = 0;
+	est_mortgage = 0;
 }
 
-taxCalc(state, value, true, handleResult);
 
-<span class="hlc-output-fixed30">$1,931
-<span aria-label="Per month">
-
+taxCalc(state, value, toBuy, est_mortgage, handleResult);
 
 var arr = [$("span.zsg-h2.addr_city").html()];
 var desc = [$("div[class='notranslate']").html()];
