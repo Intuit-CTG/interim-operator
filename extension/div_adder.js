@@ -31,7 +31,7 @@ if (toBuy) {
 	est_mortgage = $("span.hlc-output-fixed30").html();
 
 	if (!est_mortgage){
-		setTimeout(get_mortgage, 200);
+		setTimeout(get_mortgage, 20000);
 	} else {
 		est_mortgage = Number(est_mortgage.split('<')[0].split("$")[1].split(",").join(""));
 		alert("Working2! est_mortgage: " + est_mortgage);
