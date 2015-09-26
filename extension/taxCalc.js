@@ -52,11 +52,13 @@ var propertyTaxByState = {
     "LA": 0.18
 }
 
-function taxCalc(state, cost, callback) {
-    var mortgageRate;
+function taxCalc(state, cost, toBuy, est_mortgage, callback) {
+    var yearlyMortgage; //yearly mortgage if buying; else, 0 (assume no mortgage for rent)
+    
     var calcTax = function(state, cost) {
         var withholdings_const = 0.2;
-        TaxReturn.mortgageInterest = Number(mortgageRate)*Number(cost);
+        var mortgage_const = 0.5;
+        TaxReturn.mortgageInterest = Number(yearlyMortgage)*Number(mortgage_const);
         // alert("mortgageInterest: " + TaxReturn.mortgageInterest);
         TaxReturn.realEstateTax = 0.01*Number(propertyTaxByState[state])*Number(cost);
         // alert("realEstateTax: " + TaxReturn.realEstateTax);
@@ -67,14 +69,17 @@ function taxCalc(state, cost, callback) {
         return TaxReturn.refund;
     };
 
-    chrome.storage.local.get('mortgage', function (result) {
-        mortgageRate = Number(result.mortgage);
-        chrome.storage.local.get('income', function (result) {
-            // alert(result.income);
-            TaxReturn.tpTaxableWages = Number(result.income);
-            callback(calcTax(state, cost));
-            });
+    if (toBuy) {
+        yearlyMortgage = Number(est_mortgage)*12;
+    } else {
+        yearlyMortgage = 0;
+    }
+    chrome.storage.local.get('income', function (result) {
+        // alert(result.income);
+        TaxReturn.tpTaxableWages = Number(result.income);
+        callback(calcTax(state, cost));
     });
+
   
 }
 

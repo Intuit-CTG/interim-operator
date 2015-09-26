@@ -8,8 +8,15 @@ function handleResult(returns) {
     }
 }
 
-var cost = $("div.main-row.home-summary-row").find("span").html().split('<')[0]
+var cost = $("div.main-row.home-summary-row").find("span").html().split('<')[0];
 var value = cost.split("$")[1].split(",").join("");
-var state = $("span.zsg-h2.addr_city").html().split(", ")[1].split(" ")[0]
+var state = $("span.zsg-h2.addr_city").html().split(", ")[1].split(" ")[0];
+var toBuy = $(".loan-calculator-label")[0];
+if (toBuy) {
 
-taxCalc(state, value, handleResult);
+}
+
+taxCalc(state, value, true, handleResult);
+
+<span class="hlc-output-fixed30">$1,931
+<span aria-label="Per month">

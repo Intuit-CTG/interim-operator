@@ -4,9 +4,7 @@ function submitInfo() {
     event.preventDefault();
     Number income = Number(document.getElementById('income').value);
 
-    Number mortgage = Number(document.getElementById('mortgage').value);
     chrome.storage.local.set({'income' : income});
-    chrome.storage.local.set({'mortgage' : mortgage});
     // alert("Here");
     // chrome.storage.local.get('income', function (result) {
     //   alert(result.income);
