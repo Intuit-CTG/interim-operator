@@ -22,24 +22,29 @@
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
      -->
-    <!-- <script src="popup.js"></script> -->
+    
 
   </head>
-  chrome.storage.sync.set({'income': theValue}, function() {
-    message('Settings saved');
-  chrome.storage.sync.get('income', taxComparison)
-  })
 
-  <body>''
-    <form action="action_page.php">
-    First name:<br>
-    <input type="text" name="firstname" value="Mickey">
-    <br>
-    Last name:<br>
-    <input type="text" name="lastname" value="Mouse">
-    <br><br>
-    <input type="submit" value="Submit">
-</form>
+  <body>
+<!--     <form id="tax_info" onsubmit="submitInfo()">
+      Zip Code: <input type="text" name="zip" id="txt_zip"><br>
+      Income: <input type="text" name="income" id="txt_income"><br><br>
+      <input name="Submit" type="submit" value="Submit">
+    </form> -->
+    <form id="info">
+      <p>Zip<br />
+      <input type="text" id="zip" name="zip" size="50" value="" /></p>
+      <p>Income<br />
+      <input type="text" id="income" name="income" size="50" value="" /></p>
+      <input id="save" type="submit" value="Save">
+    </form>
+
+
+    <script src="popup.js"></script>
   </body>
+
+
+
 </html>
 
