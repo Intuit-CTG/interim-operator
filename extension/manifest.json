@@ -23,7 +23,10 @@
   "content_scripts": [
       {
           "matches": ["*://www.zillow.com/*"],
-          "js": ["div_adder.js"]
+          "js": ["jquery-1.11.3.min.js",
+              "TaxCaster.js",
+              "taxCalc.js",
+              "div_adder.js"]
       }
   ]
 }
