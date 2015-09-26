@@ -52,20 +52,23 @@ var propertyTaxByState = {
     "LA": 0.18
 }
 
-$.getScript("TaxCaster.js", function() {});
-var mortgageRate;
-chrome.storage.sync.get('mortgage', function (result) {
-   mortgageRate = result.mortgage;
-});
-chrome.storage.sync.get('income', function (result) {
-  TaxReturn.tpTaxableWages = result.income;
-});
+function taxCalc(state, cost) {
+    var mortgageRate;
+    chrome.storage.sync.get('mortgage', function (result) {
+        mortgageRate = result.mortgage;
+    });
+    chrome.storage.sync.get('income', function (result) {
+        alert(result.income);
+        TaxReturn.tpTaxableWages = result.income;
+    });
 
-var calcTax = function(state, cost) {
-   
-    TaxReturn.mortgageInterest = mortgageRate*cost;
-    TaxReturn.realEstateTax = propertyTaxByState[state]*cost;
-    TaxReturn.calcTax();
-    return TaxReturn.refund;
+    var calcTax = function(state, cost) {
+        TaxReturn.mortgageInterest = mortgageRate*cost;
+        TaxReturn.realEstateTax = propertyTaxByState[state]*cost;
+        TaxReturn.calcTax();
+        return TaxReturn.refund;
+    };
+
+    return calcTax(state, cost);
 }
 
