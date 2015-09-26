@@ -57,20 +57,20 @@ function taxCalc(state, cost, callback) {
     var calcTax = function(state, cost) {
         var withholdings_const = 0.2;
         TaxReturn.mortgageInterest = Number(mortgageRate)*Number(cost);
-        alert("mortgageInterest: " + TaxReturn.mortgageInterest);
-        TaxReturn.realEstateTax = Number(propertyTaxByState[state])*Number(cost);
-        alert("realEstateTax: " + TaxReturn.realEstateTax);
+        // alert("mortgageInterest: " + TaxReturn.mortgageInterest);
+        TaxReturn.realEstateTax = 0.01*Number(propertyTaxByState[state])*Number(cost);
+        // alert("realEstateTax: " + TaxReturn.realEstateTax);
         TaxReturn.tpWithholdings = Number(TaxReturn.tpTaxableWages)*Number(withholdings_const);
        
         TaxReturn.calcTax();  
-        alert("refund: " + TaxReturn.refund);
+        // alert("refund: " + TaxReturn.refund);
         return TaxReturn.refund;
     };
 
     chrome.storage.local.get('mortgage', function (result) {
         mortgageRate = Number(result.mortgage);
         chrome.storage.local.get('income', function (result) {
-            alert(result.income);
+            // alert(result.income);
             TaxReturn.tpTaxableWages = Number(result.income);
             callback(calcTax(state, cost));
             });
