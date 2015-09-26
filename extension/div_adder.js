@@ -35,5 +35,10 @@ var list_data = $("ul.zsg-list_square.zsg-lg-1-2.zsg-sm-1-1").find('li').map(fun
     return $(el).text();
 }).get();
 arr = arr.concat(list_data);
-$.ajax({method: "POST", url: 'http://127.0.0.1:5000/send_terms', data: {"terms": JSON.stringify(arr)}, contentType: 'application/json;charset=UTF-8'});
+$.ajax({method: "POST", url: 'http://127.0.0.1:5000/send_terms', data: {"terms": JSON.stringify(arr)}, contentType: 'application/json;charset=UTF-8',
+    success: function(data) {        
+        var sections = document.getElementsByClassName('zsg-content-section collapsible');
+        sections[1].insertAdjacentHTML('afterEnd', '<section class="zsg-content-section collapsible collapsed tax"><h2 class=<collapsible-header">Common Questions</h2><div><h4>' + data + '</h4></div></section>');
+    }
+});
 
