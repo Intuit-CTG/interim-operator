@@ -10,6 +10,7 @@ function handleResult(returns) {
     var sections = document.getElementsByClassName('zsg-content-section collapsible');
     if (!($(".tax")[0])){
     	sections[0].insertAdjacentHTML('afterEnd', '<section class="zsg-content-section collapsible collapsed tax"><h2 class=<collapsible-header">Tax Effects</h2><div><h4>' + text + '</h4></div></section>');
+    	sections[1].insertAdjacentHTML('afterEnd', '<section class="zsg-content-section collapsible collapsed tax"><h2 class=<collapsible-header">Common Questions</h2><div><h4>' + "test" + '</h4></div></section>');
     }
 }
 
@@ -25,7 +26,7 @@ if (toBuy) {
 	var get_mortgage = function() {
 		est_mortgage = $("span.hlc-output-fixed30").html().split('<')[0];
 		est_mortgage = Number(est_mortgage.split('<')[0].split("$")[1].split(",").join(""));
-		alert("Working1! est_mortgage: " + est_mortgage);
+		// alert("Working1! est_mortgage: " + est_mortgage);
 		taxCalc(state, value, toBuy, est_mortgage, handleResult);
 	}
 	est_mortgage = $("span.hlc-output-fixed30").html();
@@ -34,7 +35,7 @@ if (toBuy) {
 		setTimeout(get_mortgage, 20000);
 	} else {
 		est_mortgage = Number(est_mortgage.split('<')[0].split("$")[1].split(",").join(""));
-		alert("Working2! est_mortgage: " + est_mortgage);
+		// alert("Working2! est_mortgage: " + est_mortgage);
 		taxCalc(state, value, toBuy, est_mortgage, handleResult);
 	}
 	
