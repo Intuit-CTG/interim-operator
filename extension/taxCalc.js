@@ -54,16 +54,6 @@ var propertyTaxByState = {
 
 function taxCalc(state, cost, callback) {
     var mortgageRate;
-<<<<<<< HEAD
-    chrome.storage.sync.get('mortgage', function (result) {
-        mortgageRate = result.mortgage;
-    });
-    chrome.storage.sync.get('income', function (result) {
-        TaxReturn.tpTaxableWages = result.income;
-    });
-
-=======
->>>>>>> c9f7580216ff716414e7dac26829889adb6a4a73
     var calcTax = function(state, cost) {
         var withholdings_const = 0.2;
         TaxReturn.mortgageInterest = Number(mortgageRate)*Number(cost);
