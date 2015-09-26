@@ -20,3 +20,15 @@ taxCalc(state, value, true, handleResult);
 
 <span class="hlc-output-fixed30">$1,931
 <span aria-label="Per month">
+
+
+var arr = [$("span.zsg-h2.addr_city").html()];
+var desc = [$("div[class='notranslate']").html()];
+arr = arr.concat(desc);
+var list_data = $("ul.zsg-list_square.zsg-lg-1-2.zsg-sm-1-1").find('li').map(function(i, el) {
+    return $(el).text();
+}).get();
+arr = arr.concat(list_data);
+alert(arr);
+$.ajax({method: "POST", url: 'http://127.0.0.1:5000/send_terms', data: {"terms": JSON.stringify(arr)}, contentType: 'application/json;charset=UTF-8'});
+
