@@ -58,6 +58,7 @@ function taxCalc(state, cost) {
         mortgageRate = result.mortgage;
     });
     chrome.storage.sync.get('income', function (result) {
+        alert(result.income);
         TaxReturn.tpTaxableWages = result.income;
     });
 

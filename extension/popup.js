@@ -58,16 +58,7 @@ function submitInfo() {
     var zip = document.getElementById('zip').value;
     var income = document.getElementById('income').value;
 
-    chrome.storage.sync.set({'zip': zip});
-    alert("Here");
-    chrome.storage.sync.get('zip', function (result) {
-      alert(result.zip);
-    });
-    
-    // chrome.storage.sync.set({'income': income}, function() {
-    //   message('Settings saved');
-    // chrome.storage.sync.get('income', taxComparison)
-    // })
+    chrome.storage.sync.set({'income': income});
 }
 
 window.addEventListener('load', function(evt) {
