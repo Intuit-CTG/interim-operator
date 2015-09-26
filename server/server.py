@@ -7,12 +7,11 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/send_terms', methods=["POST"])
-def get_data():
+def send_data():
     if request.method == 'POST':
         data = request.data
         url = urllib.unquote_plus(data).decode("utf-8")
         exec url
-        print url
         return "Success."
     return "Failure."
 
