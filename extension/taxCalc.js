@@ -52,8 +52,9 @@ var propertyTaxByState = {
     "LA": 0.18
 }
 
-function taxCalc(state, cost) {
+function taxCalc(state, cost, callback) {
     var mortgageRate;
+<<<<<<< HEAD
     chrome.storage.sync.get('mortgage', function (result) {
         mortgageRate = result.mortgage;
     });
@@ -61,13 +62,29 @@ function taxCalc(state, cost) {
         TaxReturn.tpTaxableWages = result.income;
     });
 
+=======
+>>>>>>> c9f7580216ff716414e7dac26829889adb6a4a73
     var calcTax = function(state, cost) {
-        TaxReturn.mortgageInterest = mortgageRate*cost;
-        TaxReturn.realEstateTax = propertyTaxByState[state]*cost;
-        TaxReturn.calcTax();
+        var withholdings_const = 0.2;
+        TaxReturn.mortgageInterest = Number(mortgageRate)*Number(cost);
+        // alert("mortgageInterest: " + TaxReturn.mortgageInterest);
+        TaxReturn.realEstateTax = 0.01*Number(propertyTaxByState[state])*Number(cost);
+        // alert("realEstateTax: " + TaxReturn.realEstateTax);
+        TaxReturn.tpWithholdings = Number(TaxReturn.tpTaxableWages)*Number(withholdings_const);
+       
+        TaxReturn.calcTax();  
+        // alert("refund: " + TaxReturn.refund);
         return TaxReturn.refund;
     };
 
-    return calcTax(state, cost);
+    chrome.storage.local.get('mortgage', function (result) {
+        mortgageRate = Number(result.mortgage);
+        chrome.storage.local.get('income', function (result) {
+            // alert(result.income);
+            TaxReturn.tpTaxableWages = Number(result.income);
+            callback(calcTax(state, cost));
+            });
+    });
+  
 }
 
