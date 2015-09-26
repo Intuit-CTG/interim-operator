@@ -10,9 +10,17 @@
     "default_popup": "popup.html",
     "default_title": "Enter info"
   },
+
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/",
     "storage"
+  ],
+
+  "content_scripts": [
+      {
+          "matches": ["*://www.zillow.com/*"],
+          "js": ["div_adder.js"]
+      }
   ]
 }
