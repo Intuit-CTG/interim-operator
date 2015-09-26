@@ -15,7 +15,7 @@
         max-width: 400px;
       }
     </style>
-
+    <script src="popup.js"></script>
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
@@ -33,15 +33,15 @@
       <input name="Submit" type="submit" value="Submit">
     </form> -->
     <form id="info">
-      <p>Zip<br />
-      <input type="text" id="zip" name="zip" size="50" value="" /></p>
       <p>Income<br />
       <input type="text" id="income" name="income" size="50" value="" /></p>
+      <p>Annual Mortgage Interest (Ex: 0.04 for 4%)<br />
+      <input type="text" id="mortgage" name="mortgage" size="50" value="" /></p>
       <input id="save" type="submit" value="Save">
     </form>
 
 
-    <script src="popup.js"></script>
+    
   </body>
 
 
