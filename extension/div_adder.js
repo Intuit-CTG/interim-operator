@@ -1,4 +1,4 @@
-if (document.title.indexOf("Google") != -1) {
-    var test = document.getElementById("lga");
-    test.innerHTML = '<font size="72">Congratulations, buttwipe!</font>';
-}
+var sections = document.getElementsByClassName('zsg-content-section collapsible');
+
+sections[0].insertAdjacentHTML('afterEnd', '<section class="zsg-content-section collapsible collapsed"><h2 class=<collapsible-header">Tax Effects</h2><div>FUCK YOU</div></section>');
+
