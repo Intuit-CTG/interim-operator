@@ -20,15 +20,33 @@ var toBuy = $(".hlc-output-fixed30")[0];
 var est_mortgage;
 if (toBuy) {
 	toBuy = 1;
-	est_mortgage = $("span.hlc-output-fixed30").html().split('<')[0];
-	est_mortgage = Number(est_mortgage.split("$")[1].split(",").join(""));
+	
+	//catch error
+	var get_mortgage = function() {
+		est_mortgage = $("span.hlc-output-fixed30").html().split('<')[0];
+		est_mortgage = Number(est_mortgage.split('<')[0].split("$")[1].split(",").join(""));
+		alert("Working1! est_mortgage: " + est_mortgage);
+		taxCalc(state, value, toBuy, est_mortgage, handleResult);
+	}
+	est_mortgage = $("span.hlc-output-fixed30").html();
+
+	if (!est_mortgage){
+		setTimeout(get_mortgage, 200);
+	} else {
+		est_mortgage = Number(est_mortgage.split('<')[0].split("$")[1].split(",").join(""));
+		alert("Working2! est_mortgage: " + est_mortgage);
+		taxCalc(state, value, toBuy, est_mortgage, handleResult);
+	}
+	
+	
 } else {
 	toBuy = 0;
 	est_mortgage = 0;
+	taxCalc(state, value, toBuy, est_mortgage, handleResult);
 }
 
 
-taxCalc(state, value, toBuy, est_mortgage, handleResult);
+
 
 var arr = [$("span.zsg-h2.addr_city").html()];
 var desc = [$("div[class='notranslate']").html()];
