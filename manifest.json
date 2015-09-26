@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "YourTurbo",
+  "description": "This extension shows tax info for each house in Zillow, specific to the user",
+  "version": "1.0",
+
+  "browser_action": { //maybe change to pageaction
+    "default_icon": "icon.png",
+    "default_popup": "popup.html",
+    "default_title": "Enter info"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/",
+    "storage"
+  ]
+}
