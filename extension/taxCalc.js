@@ -54,7 +54,7 @@ var propertyTaxByState = {
 
 function taxCalc(state, cost, toBuy, est_mortgage, callback) {
     var yearlyMortgage; //yearly mortgage if buying; else, 0 (assume no mortgage for rent)
-    
+
     var calcTax = function(state, cost) {
         var withholdings_const = 0.2;
         var mortgage_const = 0.5;
@@ -77,6 +77,7 @@ function taxCalc(state, cost, toBuy, est_mortgage, callback) {
     chrome.storage.local.get('income', function (result) {
         // alert(result.income);
         TaxReturn.tpTaxableWages = Number(result.income);
+        // alert("My income: " + TaxReturn.tpTaxableWages);
         callback(calcTax(state, cost));
     });
 
