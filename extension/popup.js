@@ -2,12 +2,17 @@
 
 function submitInfo() {
     event.preventDefault();
-    alert("I compiled!");
-    var income = document.getElementById('income').value;
+    Number income = Number(document.getElementById('income').value);
 
-    var mortgage = document.getElementById('mortgage').value;
+    Number mortgage = Number(document.getElementById('mortgage').value);
     chrome.storage.local.set({'income' : income});
     chrome.storage.local.set({'mortgage' : mortgage});
+    // alert("Here");
+    // chrome.storage.local.get('income', function (result) {
+    //   alert(result.income);
+    // });
+
+    
     // chrome.storage.sync.set({'income': income}, function() {
     //   message('Settings saved');
     // chrome.storage.sync.get('income', taxComparison)
